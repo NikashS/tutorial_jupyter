@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>MapBox + Weather Data</title>
+    <title>Jupyter Notebook Viewer</title>
     <!--Google Analytics-->
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -62,7 +62,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right navbar-color">
                     <li><a href="https://www.commerce.gov/datausability/">Index</a></li>
-                    <li><a href="https://www.mapbox.com/">MapBox Research</a></li>
+                    <li><a href="http://jupyter.org/">Jupyter Research</a></li>
                 </ul>
             </div><!-- navbar-collapse -->
         </div><!-- container-fluid -->
@@ -71,9 +71,9 @@
     <section class="scroll">
         <div class="scroll-overlay ">
             <div class="title headtext">
-                <h1><span class="title-line" style="font-size:150%;">WEATHER DATA FOR WEB MAPS</span></h1>
-                <h4><span class="title-line">USING MAPBOX AND OPEN SOURCE TOOLS TO MAP ATMOSPHERIC WATER</span></h4>
-                <h5><span class="title-line">BY DAMON BURGETT, GEOGRAPHER, MAPBOX AND JEFF CHEN, CHIEF DATA SCIENTIST, US DEPT. OF COMMERCE</span></h5>
+                <h1><span class="title-line" style="font-size:150%;">JUPYTER NOTEBOOK VIEWER</span></h1>
+                <h4><span class="title-line">[INSERT CAPTION HERE]</span></h4>
+                <h5><span class="title-line">BY [INSERT NAMES HERE]</span></h5>
             </div>
         </div>
     </section>
@@ -86,11 +86,11 @@
                 
                 <div id='' class="hidden-xs hidden-sm col-lg-4 col-md-4">
                     <a href="https://commerce.gov/dataservice"><img class="footlogo" width="160px"src="img/CDS-horizontal-v2.jpg"/></a>
-                    <a href="https://www.mapbox.com/"><img class="footlogo" width="160px"src="img/logo.png"/></a> 
+                    <a href="http://jupyter.org/"><img class="footlogo" width="160px"src="img/logo.png"/></a> 
                 </div>
 
                 <div id='content' class="col-lg-6 col-md-6">
-                    <em>As part of the <a href="https://www.commerce.gov/datausability/">Commerce Data Usability Project</a>, Zillow in collaboration with the <a href="https://www.commerce.gov/dataservice/">Commerce Data Service</a> has created a tutorial that merges American Community Service data with Zillow public data to provide a better look at housing affordability for protective service workers. If you have question, feel free to reach out to the Commerce Data Service at <a href="mailto:DataUsability@doc.gov">DataUsability@doc.gov</a>.</em>
+                    <em>As part of the <a href="https://www.commerce.gov/datausability/">Commerce Data Usability Project</a>, [Insert Description Here] If you have question, feel free to reach out to the Commerce Data Service at <a href="mailto:DataUsability@doc.gov">DataUsability@doc.gov</a>.</em>
                 </div>
 
             </div>
@@ -101,126 +101,880 @@
             <div class="row">
                 <div id='content' class="col-lg-10 col-md-10"><!-- Content -->
 
-                  <section id='intro'>
-                    <h2 class="sectionhead">Atmospheric Rivers (AR) are narrow regions in the atmosphere that transport water across the world.</h2>
-                    <p>When it comes to buying a house, there is a lot more to consider than just the sticker price. Wages and salaries vary widely across the country, including within specific occupations, as does the share of household income local residents are accustomed to dedicating to housing costs each month. At one extreme, some places with low housing costs might appear to be very affordable, but incomes might also be much lower than elsewhere; at the other extreme, some places that appear to be extremely expensive when looking at prices, might be more manageable as a result of relatively high wages and salaries.</p>  
+                  <section id="intro">
+                    <h2 class="sectionhead">Introduction</h2>
+                    <h2 class="subsection">UCLA CCPR Workshop</h2>
+                    <p><a href="https://ccpr.ucla.edu/">https://ccpr.ucla.edu/</a></p>
 
-                    <p>How do we know when moisture is moving our way? Among the many meteorological indicators that are collected and modeled by the National Oceanic Atmospheric Administration (NOAA) is Precipitable Water (PWAT), which is the amount of water that can be extracted from the entire overlying atmosphere over a particular location on the surface of the Earth. PWAT is typically measured in inches, millimeters or kg/m<sup>2</sup>. It is a key measure of the available &#34;fuel&#34; for the storms in the atmosphere and an estimate for how much rain or snow could be produced from those storms. Thus, when PWAT values are high, the atmosphere is laden with moisture and has the potential to create storms with large amounts of precipitation whereas low values indicate the atmosphere is relatively dry and it is unlikely to produce significant amounts of rainfall or snowfall.</p>
-                    
-                    <p><img src="https://cloud.githubusercontent.com/assets/5084513/12313587/ac86d808-ba1d-11e5-9405-e1597f9db8a6.png" alt="image"></p>
-                    
-                    <p>Beyond its utility, PWAT is a very striking weather variable. The complex swirling and eddying patterns bring alive atmospheric processes, and are a beautiful liquid analog to the more esoteric variable that they describe. Combining these data with reference information - coastlines, political borders, and terrain - helps to paint a clearer picture of earth surface and atmospheric interactions on our planet.</p>
-                    
-                    <p>It&#39;s helpful to keep in mind that PWAT alone does not indicate to what extent certain atmospheric processes, such as thunderstorms, will be able to extract the water from the atmosphere, but it is a measure of the potential for such precipitation through those processes. Nonetheless, it&#39;s a critical measure collected by satellite instruments and used for producing NOAA&#39;s weather forecasts.</p>
+                    <h2 class="subsection">Practical GIS for Demography</h2>
+                    <p>To accompany the software-agnostic content of the slides, these specific exercises are in [R]</p>
+                    <p>We also highlight some alternative software in the "Miscellaneous" section at the end</p>
+
+                    <pre><code># this only has to be done once (as the root ubuntu user)
+# get 'gdal' needed for 'rgdal' and 'rgeos'
+# http://robinlovelace.net/r/2013/11/26/installing-rgdal-on-ubuntu.html
+# aptitude better package manager than apt-get for gdal
+
+# sudo apt-get update
+# sudo apt-get install aptitude
+# sudo aptitude install libgdal-dev 
+# sudo aptitude install libproj-dev</code></pre>
+
+                    <pre><code># choose rstudio as source package repository
+# options(repos = c(CRAN = "http://cran.rstudio.com"));
+
+# install.packages('deldir')
+# install.packages('dplyr')
+# install.packages('jsonlite',dependencies=TRUE)
+# install.packages('maptools')
+# install.packages('rgeos')
+# install.packages('rgdal',dependencies=TRUE)
+# install.packages('leaflet')</code></pre>
                   </section>
 
-                  <section id="code">
-                      <h2 class="sectionhead">Getting Started</h2>
-                      <p>This tutorial is the first in a two-part series that will guide you through the steps to visualize <a href="http://nomads.ncep.noaa.gov">NOAA NOMADS</a> data. Part 1 covers processing and visualization of PWAT data from the <a href="http://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25.pl">0.25 degree Global Forecast System (GFS)</a>. As atmospheric rivers are dynamic, Part 2 will discuss how to produce a video-based animated map of this data that enables discovery of complex temporal patterns.</p>
-                      <p>To get started quickly, the code for this tutorial can be found at the following <a href="Github repo]([INSERT LINK]) ([INSERT LINK])">Github Repository</a>.</p>
+                  <section id="step0">
+                    <h2 class="sectionhead">Step 0: For reproducible environment: ?sessionInfo to display packages and versions</h2>
+                    <pre><code>library(dplyr)
+library(jsonlite)
+library(maptools); gpclibPermit()
+library(deldir)
+library(rgeos)
+library(rgdal)
+library(leaflet)
+
+sessionInfo()</code></pre>
+                    
                   </section>
 
                   <section id="step1">
-                      <h2 class="subsection">Step 1: Preliminaries</h2>
-                      <h4>Libraries and Utilities</h4>
-                      <p>We&#39;ll be using the following tools to wrangle the weather model output files:</p>
-                      <ul>
-                      <li><strong><a href="http://www.gdal.org/">GDAL</a></strong>: Translator library for raster and vector geospatial data formats;</li>
-                      <li><strong><a href="https://github.com/mapbox/rasterio">rasterio</a></strong>: Clean and fast and geospatial raster I/O for Python programmers who use Numpy;</li>
-                      <li><strong><a href="https://github.com/mapbox/grib-doctor">gribdoctor</a></strong>: Utilities for handling quirks of General Regularly-distributed Information in Binary form (grib) files in GIS applications. Grib data is a concise data format commonly used in meteorology to store historical and forecast weather data which can looked at using software applications.</li>
-                      <li><strong><a href="https://www.mapbox.com/mapbox-studio/">Mapbox Studio</a></strong>: A map design platform for vector-based web maps.</li>
-                      </ul>
-                      <p>You should be able to find install instructions for all of these on their respective web pages.</p>
+                    <h2 class="sectionhead">Step 1: Obtain Census TIGER Tract Polygons, Use Census Bureau API to obtain 2010 Population Count, Use Google Radar API to obtain GPS points</h2>
+
+                    <h2 class="subsection">a. Tract Polygons via shapefile format</h2>
+
+                    <p>Download Tiger Tract Shapefiles (Manually)</p>
+                    <p>'tl_2015_06_tract.zip'</p>
+                    <p><a href="http://www.census.gov/geo/maps-data/data/tiger-line.html">http://www.census.gov/geo/maps-data/data/tiger-line.html</a></p>
+                    <p><a href="http://www2.census.gov/geo/tiger/TIGER2015/TRACT/">http://www2.census.gov/geo/tiger/TIGER2015/TRACT/</a></p>
+                    <p><a href="http://www2.census.gov/geo/tiger/TIGER2015/TRACT/tl_2015_06_tract.zip">http://www2.census.gov/geo/tiger/TIGER2015/TRACT/tl_2015_06_tract.zip</a></p>
+
+                    <p>Try this with 2010 shape files, see if 2 to 1 tract redundancy still present probably, since issue was with datatable from census api, not shape file</p>
+
+                    <pre><code># an [r] command to tell linux shell to 'download' a file from a url
+# system() --> wget --> url
+
+# download
+# system('wget http://www2.census.gov/geo/tiger/TIGER2015/TRACT/tl_2015_06_tract.zip')
+
+# unzip
+# system('mkdir -p ~/notebooks/gis_demog_misc')
+# system('unzip /notebooks/gis_demog_misc/tl_2015_06_tract.zip -d ~/notebooks/gis_demog_misc/tl_2015_06_tract')</code></pre>
+
+                    <pre><code># to bring up r's help manual, use syntax "?function_name"
+?readShapeSpatial</code></pre>
+
+                    <pre><code>#################
+# shapefile - tract
+#################
+
+# library(maptools)
+# directory location of shapefiles
+shapefile_location = '~/notebooks/gis_demog_misc/tl_2015_06_tract/'
+ca_shp <- readShapeSpatial(paste0(shapefile_location,'tl_2015_06_tract.shp'))
+
+# specify projection
+proj4string(ca_shp) <- "+proj=longlat +datum=WGS84"
+plot(ca_shp)
+
+# notice how long it takes, shapefiles are "bloated"</code></pre>
+
+                    <pre><code>names(ca_shp)
+
+# just subset to la county
+la_county = subset(ca_shp, ca_shp$COUNTYFP == '037')
+plot(la_county)</code></pre>
+
+                    <h2 class="subsection">Custom "Cropping" to further focus in on LA City (who cares about Catalina, unless you're headed to the Catalina Wine Mixer)</h2>
+
+                    <p>NOTE:</p>
+                    <p>The [R] function ?locator() does NOT work inside jupyter notebook</p>
+                    <p>This would allow us to interactively input point-and-click points on the plot</p>
+                    <p>If it did, the code to do it is below</p>
+                    <p>We can try it later, when we migrate to Rstudio</p>
+
+                    <pre><code>#################
+# shapefile - tract
+#################
+
+# plot(la_county)
+# locator to interactively choose points of convex hull for custom bbox
+
+# Click points to draw your own custom boundary then hit keyboard 'esc' to finalize
+# chull_locat = locator()
+# plot(chull(chull_locat))
+
+# use the new custom boundary points to crop out ignored areas
+
+# library(spatstat)
+# bbox_cust = bounding.box.xy(chull_locat)
+# bb_poly <- as((bbox_cust), "SpatialPolygons")
+# proj4string(bb_poly) <- CRS(proj4string(la_county))
+
+# library(raster)
+# la_county_zoom = raster::crop(la_county,bb_poly)
+# plot(la_county_zoom)
+
+# save(la_county_zoom,file='/notebooks/gis_demog_misc/la_county_zoom_tvmagic.RData')</code></pre>
+
+                    <h2 class="subsection">"TV Magic" I applied the custom boundary cropping for you</h2>
+
+                    <pre><code>load("~/notebooks/gis_demog_misc/la_county_zoom_tvmagic.RData")
+plot(la_county_zoom)</code></pre>
+
+                    <h2 class="subsection">Use LA County's border as our "Boundary" (keep on deck for later)</h2>
+
+                    <p>That is, dissolve the interior polygons.</p>
+                    <p>The county border will be our 'closed jordan curve' that partitions interior and exterior regions</p>
+                    <p>Jordan Curve Theorem: A closed curve divides a space into: Interior, Boundary, and Exterior</p>
+                    <p><a href="https://en.wikipedia.org/wiki/Jordan_curve_theorem">https://en.wikipedia.org/wiki/Jordan_curve_theorem</a></p>
+
+                    <pre><code>####################
+# get la county bdry
+# ?rgeos::gUnionCascaded to dissolve interior polygons
+####################
+
+# plot(la_county_zoom)
+# library(rgeos)
+la_county_bdry = rgeos::gUnionCascaded(la_county_zoom)
+plot(la_county_bdry)</code></pre>
+
+                    <h2 class="subsection">b. Obtain Census 2010 Tract Level Counts via API</h2>
+
+                    <p><a href="http://api.census.gov/data/key_signup.html">http://api.census.gov/data/key_signup.html</a></p>
+                    <p><a href="http://api.census.gov/data.html">http://api.census.gov/data.html</a></p>
+                    <p>Check your email for the api key, going to need it below</p>
+
+                    <pre><code># Plug in your API Key (Census API)
+api_key_census = 'foo_your_key'  # blank out</code></pre>
+                    
+                    <pre><code>base_url_census = 'http://api.census.gov/data/2015/pdb/tract?get='
+
+query = paste0(base_url_census,
+               'Tot_Population_CEN_2010&for=tract:*&in=state:06+county:037&key=',
+               api_key_census)
+
+# library(jsonlite)
+dat_raw_census = fromJSON(query)
+str(dat_raw_census)
+
+# use first row of matrix as variables' name (column names) for data frame
+colnames(dat_raw_census) = dat_raw_census[1,]
+dat_raw_census = dat_raw_census[-1,]
+str(dat_raw_census)
+head(dat_raw_census)
+
+dat_census = data.frame(Tot_Population_CEN_2010 = as.numeric(dat_raw_census[,1]),
+  state = as.character(dat_raw_census[,2]),
+  county = as.character(dat_raw_census[,3]),
+  tract = as.character(dat_raw_census[,4]),
+  stringsAsFactors=FALSE
+)
+
+head(dat_census)</code></pre>
+                    
+                    <h2 class="subsection">c. In-N-Out GPS points via API call to Google Radar</h2>
+
+                    <p><a href="https://developers.google.com/places/web-service/search#RadarSearchRequests">https://developers.google.com/places/web-service/search#RadarSearchRequests</a></p>
+                    <p><a href="https://developers.google.com/places/web-service/get-api-key">https://developers.google.com/places/web-service/get-api-key</a></p>
+                    <p>Check your google account for the api key, going to need it below</p>
+
+                    <h2 class="subsection">Benefit of API</h2>
+
+                    <p>Pro: A week ago, I got an email notice from Google Radar API saying a particular 'rule of engagement' was changed</p>
+                    <p>Great! Using Data in the Wild, it's rare to have the data provider let you know up to date documentation</p>
+
+                    <p><img src="img/apiemail.png" alt="image"></p>
+
+                    <pre><code># Plug in your API Key (Google Radar API)
+api_key_radar = 'foo_your_key'  # blank out</code></pre>
+
+                    <h2 class="subsection">To get complete spatial coverage of LA County, choose 3 landmark points for Google Radar</h2>
+
+                    <p><a href="https://www.google.com/maps/">https://www.google.com/maps/</a></p>
+                    <p>Right Click -> "What's here?"</p>
+                    <p>Up to you, but I used</p>
+                    <p><ul>
+                      <li>latitude,longitude</li>
+                      <li>34.20306,-118.3817</li>
+                      <li>33.92515,-117.5191</li>
+                      <li>33.78619,-117.8751</li>
+                    </ul></p>
+
+                    <pre><code>api_key=api_key_radar
+keyword='in-n-out'
+types='food'
+radius='50000'  # 50000 meters (about 31 miles)
+
+# location='34.072422,-118.0776237'  # 'lat,lng' order # rosemead  # landmark3</code></pre>
+                    
+                    <pre><code># Google's API documentation tells us to treat 
+# each gps point as a text string of "latitude,longitude"
+
+# Since we're going to 'glue' the string into a website URL
+
+landmark1 = "33.78619,-117.8751"
+landmark2 = "33.92515,-117.5191"
+landmark3 = "34.20306,-118.3817"
+
+class(landmark1)</code></pre>
+
+                    <h2 class="subsection">What are the useful API outputs?</h2>
+
+                    <pre><code># result example for 1 landmark
+
+location = landmark1
+
+call_url = paste0('https://maps.googleapis.com/maps/api/place/radarsearch/json?',
+                  'location=',location,  # 'lat,lng' order
+                  '&radius=',radius,
+                  '&types=',types,
+                  '&keyword=',keyword,
+                  '&key=',api_key
+                 )
+
+
+# library(jsonlite)
+# ?jsonlite
+
+dat_raw = fromJSON(call_url)
+str(dat_raw)
+
+dat_raw$results$geometry$location$lat
+dat_raw$results$geometry$location$lng
+
+plot(y=dat_raw$results$geometry$location$lat,
+     x=dat_raw$results$geometry$location$lng
+    )
+
+# wrap into function so we can iterate over the 3 landmarks</code></pre>
+                    <h2 class="subsection">Wrap into a custom function so we can iterate over the 3 landmarks</h2>
+
+                    <pre><code>get_gps_custom_func = function(your_landmark){
+    location = your_landmark
+    call_url = paste0('https://maps.googleapis.com/maps/api/place/radarsearch/json?',
+                      'location=',location,  # 'lat,lng' order
+                      '&radius=',radius,
+                      '&types=',types,
+                      '&keyword=',keyword,
+                      '&key=',api_key
+                     )
+    
+    library(jsonlite)
+    # ?jsonlite
+    
+    dat_raw = fromJSON(call_url)
+    # str(dat_raw)
+    
+    dat_relevant = cbind(dat_raw$results[-1],
+                     location.lat=(dat_raw$results$geometry$location$lat),  # explicit redundancy helpful (already in results)
+                     location.lng=(dat_raw$results$geometry$location$lng)
+                    )
+    
+    return(dat_relevant)
+}</code></pre>
+                    <pre><code>list(landmark1,landmark2,landmark3)</code></pre>  
+                    <pre><code># apply our custom function to iterate over the list of 3 landmarks
+# basically a 'for-loop' but cleaner syntax
+
+out_landmark_123 = lapply(list(landmark1,landmark2,landmark3),
+                          get_gps_custom_func
+                         )</code></pre>
+                    <pre><code>str(out_landmark_123)
+
+# ?rbind_all row binds the elements of the input list into a single output data frame
+dat_all = rbind_all(out_landmark_123)
+
+class(dat_all)
+dim(dat_all)
+head(dat_all)</code></pre>
+                    
+                    <h2 class="subsection">Remove duplicate In-N-Out's via unique identifier 'place_id'</h2>
+                    <p>Since we used 3 landmarks, their circles with 50000 meter radii (31 mi) will overlap</p>
+
+                    <pre><code>names(dat_all)
+nrow(dat_all)
+
+dat_all$place_id %>% unique() %>% length()
+
+# alternative to determine unique()
+# duplicated(dat_all$place_id)
+# !(duplicated(dat_all$place_id))</code></pre>
+                    <pre><code># since we used 3 landmarks, their 5000 km circles will overlap
+# remove duplicate in-n-out via unique identifier 'place_id'
+
+names(dat_all)
+
+# library(dplyr)
+
+dat_all_uniq = dat_all %>%
+dplyr::distinct(place_id) %>%  # alternative to uniqe() and !duplicated()
+dplyr::select(location.lng,location.lat,place_id)
+
+# note: now in (lng,lat) order, for later processing (later on will expect data.frame() format)
+# we could easily convert it here as well
+
+head(dat_all_uniq)
+class(dat_all_uniq)
+dim(dat_all_uniq)
+
+# use google 'place_id' as row names, to keep track of points
+row.names(dat_all_uniq) = dat_all_uniq$place_id
+
+# with row names assigned, no need for place_id as a column
+dat_latlng = dat_all_uniq %>%
+select(-place_id)
+
+head(dat_latlng)
+row.names(dat_latlng)
+
+# we explicitly save the points later when we migrate
+# save(dat_latlng,file='/notebooks/gis_demog_misc/dat_latlng.RData')</code></pre>
+                    
                   </section>
 
                   <section id="step2">
-                      <h2 class="subsection">Step 2: Get the data</h2>
-                      <p>The <a href="http://nomads.ncep.noaa.gov">NOAA NOMADS</a> website provides access to a myriad array of weather prediction data. We&#39;ll be working with precipitable water (PWAT) data from the <a href="http://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25.pl">0.25 degree Global Forecast System (GFS)</a>. There is a lot of data in the system, so we&#39;ll guide you through how to find the URL that will enable you to download the right data.</p>
-                      <p>As can be seen in this file list on the NOMADS site, there are multiple prediction times for each dataset corresponding to when the model has run, each of which allows access to a number of variables for a large number of atmospheric levels at various intervals from when the model has run. To start, let&#39;s select the first file in the list.</p>
-                      <p><img src="img/screencap1.jpg" alt="image"></p>
-                      <p>For each file, a wizard page allows users to select the appropriate conditions. We&#39;ll need to check off &#39;PWAT&#39; in the section labeled &#39;Select the variables desired&#39;, the subregion as well as the handy checkbox at the bottom that creates a URL for &#34;web programming&#34; - we&#39;ll be using a URL constructed from this.</p>
-                      <p><img src="img/screencap2.jpg" alt="image"></p>
-                      <p>For precipitable water (PWAT) at all levels, we have the following URL - note that the URL will change with the date, so make sure to construct your own:</p>
-                      <pre><code><span class="hljs-keyword">http</span>://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25.pl?<span class="hljs-built_in">file</span>=gfs.t12z.pgrb2<span class="hljs-number">.0</span>p25.f000&amp;all_lev=<span class="hljs-command"><span class="hljs-keyword">on</span>&amp;<span class="hljs-title">var_PWAT</span>=<span class="hljs-title">on</span>&amp;<span class="hljs-title">leftlon</span>=<span class="hljs-title">0</span>&amp;<span class="hljs-title">rightlon</span>=<span class="hljs-title">360</span>&amp;<span class="hljs-title">toplat</span>=<span class="hljs-title">90</span>&amp;<span class="hljs-title">bottomlat</span>=-<span class="hljs-title">90</span>&amp;<span class="hljs-title">dir</span>=%<span class="hljs-title">2Fgfs</span><span class="hljs-number">.2016011212</span></span></code></pre>
-                      <p>Let&#39;s download this file to our working directory as &#34;raw.grib2&#34; using <code>wget</code>. Alternatively, you can directly download from the NOMADS web interface.</p>
-                      <pre><code>wget <span class="hljs-keyword">http</span>://nomads.ncep.noaa.gov/cgi-bin/filter_gfs_0p25.pl?<span class="hljs-built_in">file</span>=gfs.t12z.pgrb2<span class="hljs-number">.0</span>p25.f000&amp;all_lev=<span class="hljs-command"><span class="hljs-keyword">on</span>&amp;<span class="hljs-title">var_PWAT</span>=<span class="hljs-title">on</span>&amp;<span class="hljs-title">leftlon</span>=<span class="hljs-title">0</span>&amp;<span class="hljs-title">rightlon</span>=<span class="hljs-title">360</span>&amp;<span class="hljs-title">toplat</span>=<span class="hljs-title">90</span>&amp;<span class="hljs-title">bottomlat</span>=-<span class="hljs-title">90</span>&amp;<span class="hljs-title">dir</span>=%<span class="hljs-title">2Fgfs</span><span class="hljs-number">.2016011212</span> -<span class="hljs-title">O</span> <span class="hljs-title">raw</span>.<span class="hljs-title">grib2</span></span></code></pre>
-                      <p>You should now have a one band <code>grib2</code> depicting PWAT for the date and time that you selected. Open this in a desktop GIS system such as <a href="http://www.qgis.org/">QGIS</a> and you should see the following:</p><img src="https://cloud.githubusercontent.com/assets/5084513/12276750/5fc8b3ca-b92c-11e5-8332-9460e5655074.png" alt="image">
+                    <h2 class="sectionhead">Step 2: Link the 2010 Census Population Data with Tract Polygons</h2>
+                    <p>a. Shapefile is set of Tract Polygons</p>
+                    <p>b. Census Data is a table of population counts indexed at Tracts</p>
+                    <p>Link via Tract FIPS code</p>
+
+                    <h2 class="subsection">In [R], the SpatialFoo*DataFrame object is just formal book-keeping device to keep shapes linked with the data table in a single object (Same motivation for "Shapefile" .shp)</h2>
+                    <p>As seen earlier, a benefit of using this formal object is the easy to use functionality like plotting and subsetting of these Spatial-Data Objects</p>
+                    <p>Handy thing to keep in mind - figure out the value added of using a formal structure.</p>
+                    <p>If there's no functionality to benefit from, why bother?</p>
+
+                    <pre><code>class(la_county_zoom)</code></pre>
+                    <pre><code>?SpatialPolygonsDataFrame</code></pre>
+
+                    <h2 class="subsection">Examine the structure, str(), What is the most important contents?</h2>
+                    <p>clue: order/rank of the items</p>
+
+                    <pre><code>str(la_county_zoom)
+
+# 2213 data rows
+# 2213 polygons</code></pre>
+                    
+                    <h2 class="subsection">From the SpatialFoo*DataFrame, let's extract only the @data (data frame) to modify its tabular contents</h2>
+
+                    <p>Linking Spatial Shape to Data Can be broken down into smaller steps:</p>
+
+                    <p><ol>
+                      <li>Extract data table from spatial-data object</li>
+                      <li>Merge tabular data with new census data</li>
+                      <li>Re-insert data table into spatial-data object</li>
+                    </ol></p>
+
+                    <h2 class="subsection">Therefore, the key step is the "Merge" Process (2) operating on tables</h2>
+                    <p><a href="http://r4ds.had.co.nz/relational-data.html">http://r4ds.had.co.nz/relational-data.html</a></p>
+
+                    <pre><code># load("/notebooks/gis_demog_misc/la_county_zoom_tvmagic.RData")
+# plot(la_county_zoom)
+# the spatial-object came with pre-existing data in its data slot
+str(la_county_zoom@data)
+dim(la_county_zoom@data)
+head(la_county_zoom@data)
+
+# our census data that we wish to merge, then inject
+dim(dat_census)
+head(dat_census)</code></pre>
+                    
+                    <pre><code># make new variable 'GEOID' for census dataset
+# eg glue together: state,county,tract
+
+dat_census2 = dat_census %>%
+mutate(GEOID=paste0(state,county,tract)) %>%
+select(GEOID,TRACTCE=tract,Tot_Population_CEN_2010)  # rename 'tract' to 'TRACTCE' to agree with naming convention
+
+head(dat_census2)
+head(la_county_zoom@data)
+
+names(la_county_zoom)
+class(la_county_zoom)
+
+names(dat_census2)
+class(dat_census2)</code></pre>
+                    
+                    <pre><code>dim(la_county_zoom)  # less number of tracts (than census api) because we 'zoomed' in via custom points
+dim(dat_census2)</code></pre>
+                    <h2 class="subsection">'maptools' to quickly identify any quirks between SpatialFoo*DataFrame and New Tabular Data</h2>
+                    <p><ol>
+                      <li>?spChFIDs to use variable "GEOID" as id for spatial polygons</li>
+                      <li>use variable "GEOID" as rownames for census table</li>
+                      <li>?spCbind to "column bind" census table to spatial polygons via "GEOID"</li>
+                    </ol></p>
+
+                    <pre><code>?spCbind</code></pre>
+                    <p>Investigate 1 extra tract</p>
+                    <pre><code>dat_census2 %>% filter(GEOID == '06037800204')</code></pre>
+                    <pre><code># 'spooky behavior' that number of tract mismatch error is not an issue when using spCbind
+# obviously two observations in census table have tract '800204' (geoid '06037800204') (1 is NA 1 is 6740)
+# see the two blank tracts in western pan handle
+
+# if we explicitly remove the one that is missing NA
+# now, just one blank tract (the correct NA one we skipped)
+
+
+ind_error = which((dat_census2$GEOID == '06037800204') & is.na(dat_census2$Tot_Population_CEN_2010 == TRUE))
+dat_census3 = dat_census2[-ind_error,]
+
+dat_census3 %>% filter(GEOID == '06037800204')
+
+
+# la_county_zoom[865,'GEOID']
+# la_county_zoom[866,'GEOID']
+
+# plot(la_county_zoom[865,])
+# plot(la_county_zoom[866,])</code></pre>
+                    <pre><code>dat_census2 %>% filter(GEOID == '06037800204')
+
+# dat_census2_subset %>% filter(GEOID == '06037800204')  # this did matching, which default removed the 6740, while keeping NA
+
+dat_census3 %>% filter(GEOID == '06037800204')</code></pre>
+                    <pre><code># annoying that we have to dive into rowname of spdf too
+# but good assertion check to make sure polygon ID linked to Data ID correctly
+
+xx = la_county_zoom  # spatial polygon data frame
+xtra = dat_census3  # data frame of new variables
+
+# we just wrote the two lines above
+# to shoehorn our right hand side objects to the naming convention of examples
+# all of below is copy/paste example from ?spCbind
+
+# explicitly get rows that have matching GEOID
+o = match(xx$GEOID, xtra$GEOID)
+length(o)
+dim(xtra)
+
+xtra1 <- xtra[o,]
+dim(xtra1)
+
+
+# use geoid as rowname of spatialfoo
+# hidden annoyance
+xx <- spChFIDs(xx, as.character(xx$GEOID))
+
+# row.names(xx)
+
+#rownames of new dataframe
+row.names(xtra1) <- xx$GEOID
+
+# cbind spdf xx to dataframe xtra1
+xx1 <- spCbind(xx, xtra1)
+
+la_county_zoom_new = xx1
+
+spplot(la_county_zoom_new,z='Tot_Population_CEN_2010')
+
+# we explicitly save the spdf later when we migrate
+# save(la_county_zoom_new,file='/notebooks/gis_demog_misc/la_county_zoom_new.RData')</code></pre>
+
+
                   </section>
 
                   <section id="step3">
-                      <h2 class="subsection">Step 3: Geoprocessing</h2>
-                      <h4>Converting to global grib using <code>gribdoctor</code></h4>
-                      <p>A quirk of these grib files are their extent: a global, equirectangular raster with an origin of -(cellsize / 2), all the way around the world, crossing the antimeridian, to 360 - (cellsize / 2). To more easily process the gribs, we created <a href="https://github.com/mapbox/grib-doctor">gribdoctor</a> - a project that is still under development - which (a) upsamples the data by a factor of 2, (b) splits at the antimeridian, and (c) splices the data onto the other side to make a -180 to 180 extent dataset. This is crucial to be able to work with the Mapbox stack. Here is the command:</p>
-                      <pre><code>gribdoctor smoosh -dev -uw &lt;input&gt;<span class="hljs-class">.grib2</span> &lt;output&gt;<span class="hljs-class">.tif</span></code></pre>
-                      <ul>
-                      <li><code>gribdoctor smoosh</code> is the command + subcommand used to perform this operation;</li>
-                      <li><code>-dev -uw</code> are input options for <code>gribdoctor</code> indicating we want to utilize <code>-dev</code> functionality to automatically detect if it is the right spatial reference, and <code>-uw</code> to &#34;unwrap&#34; the raster to an -180/180 extent;</li>
-                      </ul>
-                      <p>For our data:</p>
-                      <pre><code>gribdoctor smoosh -dev -uw raw<span class="hljs-class">.grib2</span> unwrap<span class="hljs-class">.tif</span></code></pre>
-                      <p>After running <code>gribdoctor</code>, you should see a files that looks like the following (open in a GIS or other <code>GeoTIFF</code> viewer):</p>
-                      <p><img src="https://cloud.githubusercontent.com/assets/5084513/12286506/6bae416c-b979-11e5-8eeb-31fa137ca8b1.png" alt="image"></p>
-                      <p>Notice how the extent in the x-dimension is now -180 to 180, which will work in Mapbox web maps.</p>
-                      <h4><a id="Warp_to_Web_Mercator_89"></a>Warp to Web Mercator</h4>
-                      <p>Mapbox Studio utilizes the web mercator projection. In order to integrate the PWAT imagery with street and terrain data, we will need to warp our input data into this projection. Here is the command in <code>parallel</code>:</p>
-                      <pre><code>gdalwarp -t_srs EPSG:<span class="hljs-number">3857</span> -r BILINEAR &lt;input&gt;<span class="hljs-class">.tif</span> &lt;output&gt;<span class="hljs-class">.tif</span></code></pre>
-                      <ul>
-                      <li><code>gdalwarp</code> is the command used;</li>
-                      <li><code>-t_srs EPSG:3857</code> is the <a href="http://spatialreference.org/ref/sr-org/7483/">EPSG code for web mercator</a>;</li>
-                      <li><code>-r BILINEAR</code> specifies to use bilinear resampling in this operation. Because these data are of a continuous nature, we want to use this method. The default, nearest neighbor, will leave artifacts in the output data.</li>
-                      </ul>
-                      <p>Running on our data:</p>
-                      <pre><code>gdalwarp -t_srs EPSG:<span class="hljs-number">3857</span> -r BILINEAR unwrap<span class="hljs-class">.tif</span> mercator<span class="hljs-class">.tif</span></code></pre>
-                      <p>We should see the input data projected to the web mercator projection:</p>
-                      <p><img src="https://cloud.githubusercontent.com/assets/5084513/12313499/cd5c8de4-ba1c-11e5-8ddc-dc884dd94291.png" alt="image"></p>
-                      <h4><a id="Colorize_PWAT_110"></a>Colorize PWAT</h4>
-                      <p>Right now, our tif contains cell values that correspond to units of precipitable water units (kg/m<sup>2</sup>). In order to utilize this on a web map, we need to convert these values into color values (RGB). We&#39;ll do this using a tool designed for creating <a href="https://en.wikipedia.org/wiki/Hypsometric_tints">hypsometric tints</a>, <a href="http://www.gdal.org/gdaldem.html"><code>gdaldem color-relief</code></a>. This tool takes a color ramp file that maps input data values to red, green, and blue color values. Here&#39;s the ramp that we used:</p>
-                      <pre><code><span class="hljs-number">10.0</span> <span class="hljs-number">47</span> <span class="hljs-number">31</span> <span class="hljs-number">45</span>
-<span class="hljs-number">18.0</span> <span class="hljs-number">63</span> <span class="hljs-number">48</span> <span class="hljs-number">68</span>
-<span class="hljs-number">26.0</span> <span class="hljs-number">76</span> <span class="hljs-number">68</span> <span class="hljs-number">94</span>
-<span class="hljs-number">34.0</span> <span class="hljs-number">85</span> <span class="hljs-number">90</span> <span class="hljs-number">120</span>
-<span class="hljs-number">42.0</span> <span class="hljs-number">90</span> <span class="hljs-number">113</span> <span class="hljs-number">146</span>
-<span class="hljs-number">50.0</span> <span class="hljs-number">91</span> <span class="hljs-number">137</span> <span class="hljs-number">171</span>
-<span class="hljs-number">58.0</span> <span class="hljs-number">87</span> <span class="hljs-number">163</span> <span class="hljs-number">194</span>
-<span class="hljs-number">66.0</span> <span class="hljs-number">79</span> <span class="hljs-number">189</span> <span class="hljs-number">214</span>
-<span class="hljs-number">74.0</span> <span class="hljs-number">70</span> <span class="hljs-number">216</span> <span class="hljs-number">231</span>
-<span class="hljs-number">82.0</span> <span class="hljs-number">64</span> <span class="hljs-number">244</span> <span class="hljs-number">244</span></code></pre>
-                      <p>The first column is the data (PWAT) value, and the second, third, and fourth are the red, green, and blue values that this should be mapped to. Anything in-between is interpolated. You can generate your own color ramp - We recommend <a href="http://tristen.ca/hcl-picker/#/hlc/6/1/21313E/EFEE69">http://tristen.ca/hcl-picker/#/hlc/6/1/21313E/EFEE69</a> (you&#39;ll have to convert from color hex code) or <a href="http://colorbrewer2.org/">http://colorbrewer2.org/</a>.</p>
-                      <p>Save this ramp to a text file <code>color-ramp.txt</code>. Here is the command:</p>
-                      <pre><code>gdaldem <span class="hljs-attribute">color</span>-relief &lt;input&gt;<span class="hljs-class">.tif</span> &lt;<span class="hljs-attribute">color</span> ramp&gt;<span class="hljs-class">.txt</span> &lt;output&gt;<span class="hljs-class">.tif</span></code></pre>
-                      <p>Running on our data:</p>
-                      <pre><code>gdaldem <span class="hljs-attribute">color</span>-relief mercator<span class="hljs-class">.tif</span> <span class="hljs-attribute">color</span>-ramp<span class="hljs-class">.txt</span> <span class="hljs-attribute">color</span><span class="hljs-class">.tif</span></code></pre>
-                      <p>Now, you should have a color <code>tif</code> of your input data:</p>
-                      <p><img src="https://cloud.githubusercontent.com/assets/5084513/12313587/ac86d808-ba1d-11e5-9405-e1597f9db8a6.png" alt="image"></p>
+                    <h2 class="sectionhead">Step 3: Aggregate population count from existing Tract polygons into new Voronoi polygons</h2>
+                    <p>a. Use GPS points to generate their unique Voronoi Tesselation</p>
+                    <p>b. Overlay Voronoi Polygon onto Tract Polygons</p>
+                    <p>c. Aggregate Population Count of Tracts into new Voronoi Polygons</p>
+
+                    <h2 class="subsection">3a: Use GPS points to generate their unique Voronoi Tesselation</h2>
+                    <p>There is a 1 to 1 mapping from points to polygons</p>
+
+                    <h2 class="subsection">Custom Function that generates Voronoi polygons based on input points</h2>
+                    <pre><code># library(deldir)
+# using bbox of poly
+
+voronoipolygons = function(x, poly) {
+  require(deldir)
+  if (.hasSlot(x, 'coords')) {
+    crds <- x@coords
+  } else
+      crds = x
+      # bb = bbox(poly)  # when is bb used, not used
+      rw = as.numeric(t(bbox(poly)))  # using poly's bounding box for output of deldir
+      z <- deldir(crds[, 1], crds[, 2],rw=rw)
+      w <- tile.list(z)
+      
+  polys <- vector(mode = 'list', length = length(w))
+  require(sp)
+  for (i in seq(along = polys)) {
+    # each polygon in tile list, extract coordinates
+    pcrds <- cbind(w[[i]]$x, w[[i]]$y)
+    pcrds <- rbind(pcrds, pcrds[1,])  # closed poly
+      
+      cust_ind = w[[i]]$ptNum  # original index that deldir outputs
+      cust_ind2 = row.names(x[cust_ind,])  # use original index, to look up google place id
+      polys[[i]] <- Polygons(list(Polygon(pcrds)), ID = cust_ind2)  # use place id as polygon id
+      
+  }
+  
+  SP = SpatialPolygons(polys)
+      
+  # return deldir::voronoi poly as spdf
+      voronoi = SpatialPolygonsDataFrame(SP,
+                                      data = data.frame(x = crds[, 1],
+                                                        y = crds[, 2],
+                                                        row.names = sapply(slot(SP, 'polygons'),
+                                                                           function(x)
+                                                                               slot(x, 'ID')
+                                                                                                                                                              )
+                                                                               )
+                                                                               )
+                                                                               return(voronoi)
+}</code></pre>
+                    <pre><code># the table of gps points expects data.frame(dat_latlng) format
+class(dat_latlng)
+
+dat_latlng = data.frame(dat_latlng)
+
+class(dat_latlng)</code></pre>
+                    <h2 class="subsection">Cosmetic step to subset dat_latlng that are only inside la county</h2>
+
+                    <pre><code>plot(la_county_bdry)
+points(dat_latlng)</code></pre>
+
+                    <pre><code>plot(la_county_bdry)
+
+temp_sp = SpatialPoints(data.frame(dat_latlng))
+raster::crs(temp_sp) <- raster::crs(la_county_bdry)
+
+pts_in_la = raster::crop(temp_sp,la_county_bdry)
+
+points(pts_in_la)</code></pre>
+                    <pre><code>head(pts_in_la)
+length(pts_in_la)
+length(unique(row.names(pts_in_la)))</code></pre>
+
+                    <p>Input points in la into our voronoi custom function</p>
+                    <pre><code>names(la_county_zoom_new)
+
+plot(la_county_bdry)
+points(pts_in_la)
+
+vor_spdf = voronoipolygons(pts_in_la,la_county_zoom_new)
+plot(vor_spdf)
+points(pts_in_la)</code></pre>
+                    <pre><code>row.names(vor_spdf)</code></pre>
+
+                    <h2 class="subsection">3(b + c): Overlay Voronoi Polygon onto Tract Polygons + Aggregate Population Count of Tracts into new Voronoi Polygons</h2>
+                    <p>For overlapping polygons, weighted Average of existing tract-level population count into new voronoi polygon</p>
+                    <p><a href="https://cran.r-project.org/web/packages/sp/vignettes/over.pdf">https://cran.r-project.org/web/packages/sp/vignettes/over.pdf</a></p>
+
+                    <pre><code>?sp::aggregate</code></pre>
+                    <pre><code>names(la_county_zoom_new)</code></pre>
+                    <pre><code># argument 1 is areal unit source
+# argument 2 is target spatial support
+# areaWeighted = TRUE, uses proportion of area overlap to weight attribute
+# outputs spdf
+
+# default function is 'mean()', hence santa monica 8000+ pop is smoothed by surrounding lower pop
+# option to choose different function, sum(), to get direct counts (but cannot areaWeighted='TRUE')
+# but if use 'areaWeighted = True', forced to use mean() for aggregation function
+
+vor_agg_spdf = aggregate(la_county_zoom_new['Tot_Population_CEN_2010'],  # Tot_Population_CEN_2010
+                               by=vor_spdf,
+                               areaWeighted = TRUE)
+
+
+# spplot(vor_agg_spdf)</code></pre>
+
                   </section>
 
                   <section id="step4">
-                      <h2 class="subsection"><a id="Part_4_Upload_and_incorporate_into_a_Map_145"></a>Step 4: Upload and incorporate into a Map</h2>
-                      <p>We&#39;ll be using <a href="https://www.mapbox.com/mapbox-studio/">Mapbox Studio</a> to upload and integrate our colorized PWAT data with basemap data. If at any point you become lost, refer back to the <a href="https://www.mapbox.com/help/getting-started-mapbox-studio-1/">&#34;Getting Started with Mapbox Studio&#34; Guide</a>. You&#39;ll need to make an account to use Studio.</p>
-                      <h4><a id="Upload_the_colorized_PWAT_tif_149"></a>Upload the colorized PWAT tif</h4>
-                      <p>We need to upload our colorized PWAT data to a Mapbox Studio dataset in order to integrate it into a style. In the data tab, click the &#34;New dataset&#34; button to upload - detailed instructions here: <a href="https://www.mapbox.com/help/getting-started-mapbox-studio-1/#upload-a-dataset">https://www.mapbox.com/help/getting-started-mapbox-studio-1/#upload-a-dataset</a></p>
-                      <p><img src="https://cloud.githubusercontent.com/assets/5084513/12629107/2dd80f7a-c4fb-11e5-94d4-f1106b8fbf78.png" alt="image"></p>
-                      <h4><a id="Integrate_into_a_map_style_155"></a>Integrate into a map style</h4>
-                      <p>After the upload is finished processing we can add this dataset to a style. For the color scheme I chose above, the &#34;dark&#34; template is a good starting point. In the Styles tab, click &#34;New style&#34;, and select the Dark template:</p>
-                      <p><img src="https://cloud.githubusercontent.com/assets/5084513/12629165/7d13d696-c4fb-11e5-8576-f8eeb5dbb295.png" alt="image"></p>
-                      <p>Detailed instructions here: <a href="https://www.mapbox.com/help/getting-started-mapbox-studio-1/#create-a-new-style">https://www.mapbox.com/help/getting-started-mapbox-studio-1/#create-a-new-style</a></p>
-                      <p>Now, let&#39;s add our dataset to this new style. Click on Add new layer, --&gt; Select a dataset, then navigate to and click on your uploaded data.</p>
-                      <p><img src="https://cloud.githubusercontent.com/assets/5084513/12629362/720815a4-c4fc-11e5-8649-f28c060239f3.png" alt="image"></p>
-                      <p>Clicking &#34;Create&#34; layer will then add this dataset as the top layer in your style. It should be added as the uppermost layer.</p>
-                      <h4><a id="Stylize_the_map_169"></a>Stylize the map</h4>
-                      <p>This is the fun part! Let&#39;s first move this layer below labels, borders, but above water, terrain and landcover. Click and drag to the desired position. You&#39;ll now see labels, borders, and other features as you zoom into the map.</p>
-                      <p>Now, let&#39;s make this layer slightly transparent and allow the water areas to slightly show through. Click on the layer, then change the opacity to ~ 0.5. You can also slightly bump the brightness to help the layer pop.</p>
-                      <p><img src="https://cloud.githubusercontent.com/assets/5084513/12630131/c61ca2ba-c4ff-11e5-9671-45bffd80d0e2.png" alt="image"></p>
-                      <p>If you are satisfied with your style, you are done! Click publish, and your map is ready to be shared. Alternatively, keep tweaking the style - every element in the map from labels, to landcover, to the terrain style can be manipulated.</p>
-                      <h4><a id="Sharing_your_map_179"></a>Sharing your map</h4>
-                      <p>From the Home tab of Mapbox Studio, click on your published map.</p>
-                      <p><img src="https://cloud.githubusercontent.com/assets/5084513/12630295/a4940858-c500-11e5-8461-de7d118e54f3.png" alt="image"></p>
-                      <p>To share, copy the share link in the bottom left of the page. Here&#39;s a live map: <a href="https://api.mapbox.com/styles/v1/dnomadb/cijqefqgn005h90lxxe5dygmn.html?title=true&amp;access_token=pk.eyJ1IjoiZG5vbWFkYiIsImEiOiJEak5aTXdZIn0.UtQIRl-MzHHZk6TIAHSWww#1.22/21.6/23.5">https://api.mapbox.com/styles/v1/dnomadb/cijqefqgn005h90lxxe5dygmn.html?title=true&amp;access_token=pk.eyJ1IjoiZG5vbWFkYiIsImEiOiJEak5aTXdZIn0.UtQIRl-MzHHZk6TIAHSWww#1.22/21.6/23.5</a></p>
-                          <img src="img/endshot.png" alt="final"/>
+                    <h2 class="sectionhead">Step 4: Visualize the population near each In-N-Out… make some maps</h2>
+                    <p>Jordan Curve Theorem: A closed curve divides a space into: Interior, Boundary, and Exterior</p>
+                    <p><a href="https://en.wikipedia.org/wiki/Jordan_curve_theorem">https://en.wikipedia.org/wiki/Jordan_curve_theorem</a></p>
+                    <pre><code>## Use LA County Boundary to crop our voronoi polygons
+# avoid ?gIntersection(poly_1,poly_2, byid=TRUE)
+# spooky behavior with mixing up ids
+# even with: option in gIntersection(...,id=row.names(vor_agg_spdf))
+# instead, use ?raster::crop
+
+## Crop to the vor_agg_spdf extent, then plot
+# crs(vor_agg_spdf) <- raster::crs(la_county_bdry)
+vor_agg_spdf_crop = raster::crop(vor_agg_spdf, la_county_bdry)
+# row.names(vor_agg_spdf_crop)
+
+plot(la_county_bdry)
+spplot(vor_agg_spdf)
+spplot(vor_agg_spdf_crop)</code></pre>
+
                   </section>
 
-                  <section id="conclusion">
-                      <br/><p>In part one of this tutorial, we&#39;ve taken a raw grib2 file from the NOAA NOMADS site, and transformed the data into a striking map showing atmospheric rivers across the world. The basics in opening, manipulating, and using the data can be applied broadly across potential applications.  Stay tuned for Part 2 of the tutorial where we&#39;ll manipulate this data into an animated, interactive map. For a preview, check out: <a href="https://www.mapbox.com/blog/animated-atmospheric-water/">https://www.mapbox.com/blog/animated-atmospheric-water/</a></p>
+                  <section id="step5">
+                    <h2 class="sectionhead">Step 5: Iterate to Presentation-Worthy Visualization</h2>
+                    <p>Elegant EXTERNAL Graphic tools developed by community who care about visualization</p>
+                    <p><ul>
+                      <li><a href="http://leafletjs.com/">leaflet</a></li>
+                      <li><a href="https://d3js.org/">D3</a></li>
+                      <li><a href="https://vega.github.io/vega/">vega</a></li>
+                      <li><a href="http://ggplot2.org/">ggplot</a> ('Grammer of Graphics' already natively implemented in R)</li>
+                    </ul></p>
+
+                    <p>[R] plays nicely with these external tools.</p>
+                    <p>For maps, 'leaflet' is nice</p>
+                    <p><a href="https://rstudio.github.io/leaflet/">https://rstudio.github.io/leaflet/</a></p>
+                    <p><img src="img/leaflet.png" alt="image"></p>
+                    <h2 class="subsection">Migrate to Rstudio: Export Code from Jupyter into standalone file</h2>
+                    <p>However, these interactive map tools needs interactive html capability that jupyter does not handle (yet) for [R]</p>
+                    <p>Rstudio to the rescue, let's migrate to a software environment for [R] that has what we need</p>
+
+                    <p><img src="img/rstudioexport.png" alt="image"></p>
+
+                    <pre><code># str(la_county_zoom_new)
+# str(pts_in_la)
+# str(vor_agg_spdf_crop)
+
+save(la_county_zoom_new,file='~/notebooks/gis_demog_misc/la_county_zoom_new.RData')
+save(pts_in_la,file='~/notebooks/gis_demog_misc/pts_in_la.RData')
+save(vor_agg_spdf_crop,file='~/notebooks/gis_demog_misc/vor_agg_spdf_crop.RData')</code></pre>
+                    <h2 class="subsection">In Rstudio</h2>
+                    <p><a href="http://lexis.ccpr.ucla.edu:8787/auth-sign-in">http://lexis.ccpr.ucla.edu:8787/auth-sign-in</a></p>
+                    <p>With 'exported' (downloaded) standalone 'gis_demography_exer_fin_pub.r' file, now "upload" in rstudio environment</p>
+
+                    <pre><code>#####################
+# read in the previously exported data
+#####################
+
+# jaga: linux environment
+# load(file='~/notebooks/gis_demog_misc/la_county_zoom_new.RData')
+# load(file='~/notebooks/gis_demog_misc/pts_in_la.RData')
+# load(file='~/notebooks/gis_demog_misc/vor_agg_spdf_crop.RData')
+
+# windows environment
+# load('C:\\Users\\mtzen\\Documents\\in-n-out\\pts_in_la.RData')
+# load('C:\\Users\\mtzen\\Documents\\in-n-out\\la_county_zoom_new.RData')
+# load('C:\\Users\\mtzen\\Documents\\in-n-out\\vor_agg_spdf_crop.RData')
+
+
+## not really needed
+# load('C:\\Users\\mtzen\\Documents\\in-n-out\\la_county_zoom_tvmagic.RData')
+# load('C:\\Users\\mtzen\\Documents\\in-n-out\\dat_latlng.RData')</code></pre>
+                    <pre><code>#####################
+# lexis: linux environment
+# Exercises: finish the code below out yourself
+#####################
+
+# load('')</code></pre>
+                    <pre><code>library(leaflet)
+
+#############
+# Example 1: choropleths of tracts
+# https://rstudio.github.io/leaflet/raster.html
+#############
+
+names(la_county_zoom_new)
+
+# define 'pal_func' to control colors
+palet_func = colorQuantile(
+  domain = la_county_zoom_new$Tot_Population_CEN_2010,
+  palette = "Reds",
+  na.color = "transparent"
+)
+
+# build map
+
+leaflet(la_county_zoom_new) %>%
+  addPolygons(
+    stroke = FALSE, fillOpacity = 0.5, smoothFactor = 0,
+    color = ~palet_func(Tot_Population_CEN_2010)
+    ) %>%
+  addLegend("bottomleft",
+            pal=palet_func,
+            values = ~Tot_Population_CEN_2010,
+            title = "Census 2010 Pop",
+            opacity = 1
+            )</code></pre>
+                    <pre><code># library(leaflet)
+
+#############
+# Example 1: Voronoi, Simpler
+# https://rstudio.github.io/leaflet/raster.html
+#############
+
+
+# names(vor_agg_spdf_crop)
+# names(pts_in_la)
+
+
+# define 'palet_func' to control colors
+
+palet_func = colorQuantile(
+  domain = vor_agg_spdf_crop$Tot_Population_CEN_2010,
+  palette = "Blues",
+  na.color = "transparent"
+)
+
+# build map
+
+leaflet(vor_agg_spdf_crop) %>%
+  addPolygons(
+    color = ~palet_func(Tot_Population_CEN_2010),
+    fillOpacity = 0.6, 
+    stroke = FALSE, 
+    smoothFactor = 0  # optional smooth of polygon line
+  ) %>%
+  addCircles(lng = pts_in_la$location.lng,
+             lat = pts_in_la$location.lat,
+             color='red',
+             weight = 5
+  ) %>%
+  addLegend("bottomleft",
+            pal=palet_func,
+            values = ~Tot_Population_CEN_2010,
+            title = "Census 2010 Pop",
+            opacity = 1
+  )  %>% 
+  addProviderTiles("Stamen.Toner")</code></pre>
+
+                    <pre><code># On Your Own, Using above code example, try making different maps
+# ?leaflet
+# ?addPolygons
+# https://rstudio.github.io/leaflet/</code></pre>
+                    <pre><code>#############
+# Example 2: Voronoi, More Options
+# https://rstudio.github.io/leaflet/raster.html
+#############
+
+names(vor_agg_spdf_crop)
+names(pts_in_la)
+names(la_county_zoom_new)
+
+
+# define 'palet_func' to control colors
+palet_func = colorQuantile(
+  domain = vor_agg_spdf_crop$Tot_Population_CEN_2010,
+  palette = "Blues",
+  na.color = "transparent"
+)
+
+# build map
+
+leaflet(vor_agg_spdf_crop) %>%
+  
+  # cosmetics: black bounding box for underlying background
+  addRectangles(
+    lng1 = -118.95172, lat1 = 33.67688,
+    lng2 = -117.6464, lat2 = 34.3834,
+    stroke=FALSE, fillColor = "black",
+    fillOpacity = 1
+  ) %>%
+  
+  # gps
+  addCircles(
+    lng = pts_in_la$location.lng,
+    lat = pts_in_la$location.lat,
+    weight = 10,
+    fillOpacity = 0,
+    color = 'cyan'
+  ) %>%
+  
+  # voronoi polygons
+  addPolygons(
+    stroke = TRUE,
+    weight = 5,
+    color = 'cyan',
+    fillOpacity = 0,
+    smoothFactor = 0
+  )  %>%
+  
+  # tract polygons (overlay it on map)
+  # note: 'la_county_zoom' is second spdf source
+  addPolygons(data = la_county_zoom_new,
+              stroke = TRUE,
+              color = 'orange',
+              weight = 1) %>%
+  
+  # show voronoi aggregated data
+  addPolygons(data = vor_agg_spdf_crop,
+              stroke = FALSE, fillOpacity = 0.8, smoothFactor = 0,
+              color = ~palet_func(Tot_Population_CEN_2010)
+  ) %>%
+  
+  # finishing sprinkles
+  addLegend("bottomleft",
+            pal=palet_func,
+            values = ~Tot_Population_CEN_2010,
+            title = "Census 2010 Pop",
+            opacity = 1
+  ) %>% 
+  
+  # http://leaflet-extras.github.io/leaflet-providers/preview/
+  addProviderTiles("Stamen.Toner")
+  # addProviderTiles("OpenTopoMap")
+  # addProviderTiles("NASAGIBS.ViirsEarthAtNight2012")  # zoom out</code></pre>
+
+                  </section>
+
+                  <section id="appendix">
+                    <h2 class="sectionheaad">Appendix Resources</h2>
+                    <h2 class="subsection">R centric</h2>
+                    <p><a href="http://robinlovelace.net/mapping.html">http://robinlovelace.net/mapping.html</a></p>
+
+                    <p><ul>
+                      <li>pro:<ul>
+                        <li>as seen here, [R] is a 'glue' software environment where bridges of packages are developed to interface with external and powerful 3rd party tools<ul>
+                          <li>leaflet</li>
+                          <li>json</li>
+                        </ul></li>
+                        <li>faster implementation: code-centric does not require you to navigate point-and-click menus for desired function</li>
+                      </ul></li>
+                      <li>con:<ul>
+                        <li>functionality discovery: need to have 'foresight' of what ?function you want to use (remedy with google/stackexchange)</li>
+                      </ul></li>
+                    </ul></p>
+
+                    <h2 class="subsection">Foo*GIS centric</h2>
+                    <p><a href="http://www.s4.brown.edu/S4/Training/training1.htm">http://www.s4.brown.edu/S4/Training/training1.htm</a></p>
+                    <p><a href="http://spatial.scholarslab.org/stepbystep/joining-census-data-tables-to-shapefiles-in-arcmap/">http://spatial.scholarslab.org/stepbystep/joining-census-data-tables-to-shapefiles-in-arcmap/</a></p>
+
+                    <p><ul>
+                      <li>pro:<ul>
+                        <li>most likely contains exhaustive functions for wide breadth of spatial manipulations</li>
+                        <li>functionality discovery: point and click does not require you to have foresight of desired function</li>
+                        <li>"modelbuilder" ability to 'diagram workflow' and 'drag and drop' tools into workflow<ul>
+                          <li><a href="http://pro.arcgis.com/en/pro-app/help/analysis/geoprocessing/modelbuilder/modelbuilder-tutorial.htm">http://pro.arcgis.com/en/pro-app/help/analysis/geoprocessing/modelbuilder/modelbuilder-tutorial.htm</a></li>
+                        </ul></li>
+                      </ul></li>
+                      <li>con:<ul>
+                        <li>slower implementation: point and click navigation to desired function requires multiple steps</li>
+                        <li>cutting edge stat,comp science, math methods are less likely to be available</li>
+                        <li>Majority of 'learning' GIS using Foo*GIS is 'learning' the program's point and click interface<ul>
+                          <li>How to navigate to the specific tool you need</li>
+                          <li>(Remedy) One new function is, 'screen capture' point and click and translating that to a executable script</li>
+                        </ul></li>
+                      </ul></li>
+                    </ul></p>
+
+                    <h2>Stata centric (similar to [R] but less functionality)</h2>
+                    <p><a href="http://www.stata.com/support/faqs/graphics/spmap-and-maps/">http://www.stata.com/support/faqs/graphics/spmap-and-maps/</a></p>
+                    <p><a href="http://www.stata.com/meeting/italy14/abstracts/materials/it14_pisati.pdf">http://www.stata.com/meeting/italy14/abstracts/materials/it14_pisati.pdf</a></p>
+                    <p>seems like development is low priority (2007)</p>
+                    <p><ul>
+                      <li>user contributed functions but smaller user base than [R]</li>
+                    </ul></p>
+
+                    <p>Reading the guidelines, the general principles from our presented (software-agnostic) slides still hold</p>
+                    <p>Manipulate points, lines, polygons while keeping shapes linked to data</p>
+                    <p><ul>
+                      <li>pro:<ul>
+                        <li>quickly make a map when you are already inside the stata walled garden</li>
+                      </ul></li>
+                      <li>con:<ul>
+                        <li>looks harder to operate on (manipulate) the fundamental 'shapes: points, lines, polygons'</li>
+                        <li>Stata environment not as 'gluey' as [R], so external 'specialized' communities do not really create wrappers for stata</li>
+                      </ul></li>
+                    </ul></p>
+
                   </section>
 
                 </div><!-- Content -->
@@ -249,19 +1003,23 @@
                     </li>
                     <li>
                         <ul class="fa-style"><!-- Font Awesome -->
-                            <li><a href="https://github.com/CommerceDataService/tutorial_mapbox_part1" title="Github Repo"><i class="fa fa-github-square fa-lg"></i></a></li>
-                            <li><a href="https://github.com/CommerceDataService/tutorial_mapbox_part1/zipball/master"  title="ZIP Ball"><i class="fa fa-file-code-o fa-lg"></i></a></li>
+                            <li><a href="https://gist.github.com/statsccpr/0e135f425d5541a42882fb3a4f8c53f4" title="Github Repo"><i class="fa fa-github-square fa-lg"></i></a></li>
+                            <li><a href="http://nbviewer.jupyter.org/gist/statsccpr/0e135f425d5541a42882fb3a4f8c53f4/gis_demography_exer_fin_pub.ipynb#"  title="Rmarkdown"><i class="fa fa-file-code-o fa-lg"></i></a></li>
+                            <li><a href="https://twitter.com/projectjupyter?lang=en" title="Twitter handle for Jupyter"><i class="fa fa-twitter-square fa-lg"></i></a></li>
                             
                             <!--<li><a href=""><i class="fa fa-linkedin-square fa-lg"></i></a></li>
                             <li><a href=""><i class="fa fa-facebook-square fa-lg"></i></a></li>-->
                         </ul>
                     </li>
                     <li><a href="#intro">INTRODUCTION</a></li>
-                    <li><a href="#code">GETTING STARTED</a></li>
-                    <li><a href="#step1">STEP 1: PRELIMINARIES</a></li>
-                    <li><a href="#step2">STEP 2: GET THE DATA</a></li>
-                    <li><a href="#step3">STEP 3: GEOPROCESSING</a></li>
-                    <li><a href="#step4">STEP 4: UPLOAD AND INCORPORATE</a></li>
+                    <li><a href="#step0">STEP 0</a></li>
+                    <li><a href="#step1">STEP 1</a></li>
+                    <li><a href="#step2">STEP 2</a></li>
+                    <li><a href="#step3">STEP 3</a></li>
+                    <li><a href="#step4">STEP 4</a></li>
+                    <li><a href="#step5">STEP 5</a></li>
+                    <li><a href="#appendix">APPENDIX</a></li>
+                    
                     <!--<li><a href="#conclusion">CONCLUSION</a></li>-->
 
 
